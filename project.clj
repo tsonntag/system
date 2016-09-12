@@ -1,4 +1,4 @@
-(defproject tsonntag.system "1.0.0"
+(defproject tsonntag/system "1.0.0"
   :description "Components for Stuart Sierra's component library"
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [clj-http "2.2.0"]
