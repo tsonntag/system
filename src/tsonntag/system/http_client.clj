@@ -1,9 +1,9 @@
 (ns tsonntag.system.http-client
-    (:refer-clojure :exclude [get])
-      (:require
-        [com.stuartsierra.component   :as c]
-        [clojure.string :as str]
-        [clj-http.client :as client]))
+  (:refer-clojure :exclude [get])
+  (:require
+   [com.stuartsierra.component   :as c]
+   [clojure.string :as str]
+   [clj-http.client :as client]))
 
 (defrecord HttpClient [url]
   c/Lifecycle
