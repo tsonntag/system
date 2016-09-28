@@ -8,8 +8,8 @@
 
 (defn- to-file
   "creates file from root-dir path and file-name and returns java.io.File where path is an array of strings"
-  [root-dir path name]
-  (->> [root-dir path name]
+  [root-dir path file-name]
+  (->> [root-dir path file-name]
        flatten
        (apply io/file)))
 
@@ -22,26 +22,25 @@
     this)
 
   fs/FileStore
-  (read [{:keys [root-dir] :as this} path name encoding {:keys [done]}]
-    (let [content (slurp (to-file root-dir path name) :encoding encoding)]
+  (read [{:keys [root-dir] :as this} path file-name encoding {:keys [done]}]
+    (let [content (slurp (to-file root-dir path file-name) :encoding encoding)]
       (if done
         (cond
           (string? done)   (fs/rename this path name (str name done))
-          (= :delete done) (fs/delete this path name)
+          (= :delete done) (fs/delete this path file-name)
           :else            (throw (ex-info (str "invalid option " done))))
         )
       content))
 
-  (read [this path name encoding]
-    (fs/read this path name encoding {}))
+  (read [this path file-name encoding]
+    (fs/read this path file-name encoding {}))
 
-  (write [{:keys [root-dir] :as this} {:keys [content name encoding]} path {:keys [tmp]}]
-    (println "WWWWW" content (to-file root-dir path name))
+  (write [{:keys [root-dir] :as this} {:keys [content file-name encoding]} path {:keys [tmp]}]
     (if tmp
-      (let [tmp-name (str name tmp)]
-        (spit (to-file root-dir path tmp-name) content encoding encoding)
-        (fs/rename this path tmp-name name))
-      (spit (to-file root-dir path name) content :encoding encoding)))
+      (let [tmp-file-name (str name tmp)]
+        (spit (to-file root-dir path tmp-file-name) content encoding encoding)
+        (fs/refile-name this path tmp-name name))
+      (spit (to-file root-dir path file-name) content :encoding encoding)))
 
   (write [this file path]
     (fs/write this file path {}))
@@ -49,8 +48,8 @@
   (rename [{:keys [root-dir]} path from to]
     (.renameTo (to-file root-dir path from) (to-file root-dir path to)))
 
-  (delete [{:keys [root-dir]} path name]
-    (.delete (to-file root-dir path name))))
+  (delete [{:keys [root-dir]} path file-name]
+    (.delete (to-file root-dir path file-name))))
 
 
 (defn new-directory [root-dir]

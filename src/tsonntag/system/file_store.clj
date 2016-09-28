@@ -1,9 +1,6 @@
 (ns tsonntag.system.file-store
   (refer-clojure :exclude [read]))
 
-
-(defrecord File [content name encoding])
-
 (defprotocol FileStore
   (read
     [this path name encoding]
