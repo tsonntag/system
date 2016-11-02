@@ -30,5 +30,5 @@
   (length [{:keys [name conn]}]
     (wcar conn (car/llen name))))
 
-(defn new-redir-queue [name host port]
+(defn new-redis-queue [name host port]
   (map->Redis {:name name :host host :port port}))
