@@ -18,7 +18,6 @@
     (:name this))
 
   (push [{:keys [name conn]} obj]
-    (debug "redis: push" obj)
     (wcar conn (car/lpush name obj)))
 
   (pop [{:keys [name conn]}]
