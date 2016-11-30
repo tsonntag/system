@@ -3,7 +3,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [clj-http "2.2.0"]
                  [korma "0.4.3"]
-                 [clojure-watch "0.1.10"]
+                 [com.taoensso/carmine "2.11.1"]
                  [com.stuartsierra/component "0.3.1"]]
   :profiles {:dev {:source-paths ["dev"]}}
   :target-path "target/%s")
