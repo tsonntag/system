@@ -1,4 +1,5 @@
-(ns tsonntag.system.queue)
+(ns tsonntag.system.queue
+  (:refer-clojure :exclude [name pop]))
 
 (defprotocol Queue
   (name  [this])
