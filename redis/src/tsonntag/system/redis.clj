@@ -4,7 +4,6 @@
   [tsonntag.system.queue      :as q]
   [taoensso.carmine           :as car :refer (wcar)]))
 
-
 (defrecord Redis [name host port conn]
   c/Lifecycle
   (start [this]

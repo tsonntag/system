@@ -1,7 +1,7 @@
 (ns tsonntag.system.korma
   (:require
-    [com.stuartsierra.component  :as c]
-    [korma.db    :refer [create-db default-connection get-connection]]))
+    [com.stuartsierra.component :as c]
+    [korma.db :refer [create-db default-connection get-connection]]))
 
 (defrecord KormaDb [conn spec]
   c/Lifecycle
