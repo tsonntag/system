@@ -38,7 +38,7 @@
 
 (defrecord JDBC [connection config]
   component/Lifecycle
-  (start [this] (assoc this :connection (connection-pool config)))
+  (start [this] (assoc this :datasource (connection-pool config)))
   (stop [this]
     (.close connection)
     this))
