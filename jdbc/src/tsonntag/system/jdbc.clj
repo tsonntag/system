@@ -36,11 +36,11 @@
     (.setPreferredTestQuery test-connection-query)))
 
 
-(defrecord JDBC [connection config]
+(defrecord JDBC [datasource config]
   component/Lifecycle
   (start [this] (assoc this :datasource (connection-pool config)))
   (stop [this]
-    (.close connection)
+    (.close datasource)
     this))
 
 (defn new-jdbc
