@@ -12,9 +12,7 @@
            idle-connection-test-period
            test-connection-on-checkin
            test-connection-on-checkout]
-    :or {excess-timeout (* 30 60)
-         idle-timeout (* 3 60 60)
-         minimum-pool-size 3
+    :or {minimum-pool-size 3
          maximum-pool-size 15
          test-connection-query "select 1"
          idle-connection-test-period 0
