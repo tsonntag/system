@@ -16,7 +16,7 @@
          idle-timeout (* 3 60 60)
          minimum-pool-size 3
          maximum-pool-size 15
-         test-connection-query nil
+         test-connection-query "select 1"
          idle-connection-test-period 0
          test-connection-on-checkin false
          test-connection-on-checkout false}
